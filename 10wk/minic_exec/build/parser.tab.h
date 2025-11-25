@@ -35,8 +35,8 @@
    especially those whose name start with YY_ or yy_.  They are
    private implementation details that can be changed or removed.  */
 
-#ifndef YY_YY_PARSER_H_INCLUDED
-# define YY_YY_PARSER_H_INCLUDED
+#ifndef YY_YY_BUILD_PARSER_TAB_H_INCLUDED
+# define YY_YY_BUILD_PARSER_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -44,12 +44,6 @@
 #if YYDEBUG
 extern int yydebug;
 #endif
-/* "%code requires" blocks.  */
-#line 16 "parser.y"
-
-  #include "ast.h"
-
-#line 53 "parser.h"
 
 /* Token kinds.  */
 #ifndef YYTOKENTYPE
@@ -60,34 +54,28 @@ extern int yydebug;
     YYEOF = 0,                     /* "end of file"  */
     YYerror = 256,                 /* error  */
     YYUNDEF = 257,                 /* "invalid token"  */
-    IDENT = 258,                   /* IDENT  */
-    INT_CONST = 259,               /* INT_CONST  */
-    FLOAT_CONST = 260,             /* FLOAT_CONST  */
-    CHAR_CONST = 261,              /* CHAR_CONST  */
-    STRING_LITERAL = 262,          /* STRING_LITERAL  */
-    INT = 263,                     /* INT  */
-    FLOAT = 264,                   /* FLOAT  */
-    CHAR = 265,                    /* CHAR  */
-    VOID = 266,                    /* VOID  */
-    IF = 267,                      /* IF  */
-    ELSE = 268,                    /* ELSE  */
-    WHILE = 269,                   /* WHILE  */
-    RETURN = 270,                  /* RETURN  */
-    FOR = 271,                     /* FOR  */
-    EQ = 272,                      /* EQ  */
-    NE = 273,                      /* NE  */
-    LE = 274,                      /* LE  */
-    GE = 275,                      /* GE  */
-    AND = 276,                     /* AND  */
-    OR = 277,                      /* OR  */
-    LOWER_THAN_ELSE = 278          /* LOWER_THAN_ELSE  */
+    NUMBER = 258,                  /* NUMBER  */
+    IDENT = 259,                   /* IDENT  */
+    INT_KW = 260,                  /* INT_KW  */
+    PRINT_KW = 261                 /* PRINT_KW  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef Node* YYSTYPE;
+union YYSTYPE
+{
+#line 14 "parser/parser.y"
+
+    int    ival;
+    AST*   node;
+    char*  sval;
+
+#line 76 "build/parser.tab.h"
+
+};
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
@@ -99,4 +87,4 @@ extern YYSTYPE yylval;
 int yyparse (void);
 
 
-#endif /* !YY_YY_PARSER_H_INCLUDED  */
+#endif /* !YY_YY_BUILD_PARSER_TAB_H_INCLUDED  */

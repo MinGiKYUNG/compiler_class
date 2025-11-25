@@ -6,7 +6,7 @@ int sum(int a, int b) {
 int main() {
   int x = 10, y = 20;
   while (x < y) {
-    x = x + 1;
+    x = -x;
   }
   if (x == y) return sum(x, y);
   return 0;
