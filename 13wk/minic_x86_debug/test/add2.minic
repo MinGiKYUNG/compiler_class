@@ -1,0 +1,18 @@
+int add(int a, int b) {
+    int s;
+    s = a + b;
+    return s;
+}
+
+int main() {
+    int x;
+    int y;
+    int result;
+
+    x = 3;
+    y = 4;
+
+    result = add(x, y);
+
+    return result;
+}
